@@ -1,0 +1,30 @@
+.grandwrapper{
+    width:100%;
+    padding-top: 5%;
+}
+
+.wrapper{
+    border-radius: 10px;
+    box-shadow: 2px 2px 3px #160d0f;
+    border:1px solid #acaaa8;
+    padding:20px
+}
+
+.mode-title{
+    font-weight: bold;
+    font-size: 100%;
+    
+}
+
+.margin-left{
+    margin-left:40px
+}
+
+.margin-top{
+    margin-top:20px
+}
+
+.form-group-label{
+    margin-top: 20px;
+    text-align:left
+}
