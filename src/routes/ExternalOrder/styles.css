@@ -1,7 +1,27 @@
 td{
-    padding:10px
+    padding:10px;
+    text-align: left;
 }
 
 th{
-    padding:10px
+    padding:10px;
+    text-align:left
+}
+.margin-vertical{
+    margin-top:5%;
+    margin-bottom:5%
+}
+
+p{
+    margin-top:5%;
+    text-align: left
+}
+
+form{
+    margin: 0 auto!important
+}
+
+.formWrapper{
+    padding-right:30%;
+    padding-left:30%
 }
