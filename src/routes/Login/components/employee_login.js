@@ -27,12 +27,12 @@ const EmployeeForm = (props) =>{
             <form className="d-flex flex-column justify-content-between" onSubmit={handleLogin}>
                 <div className="form-group align-items-start w-100">
                     <div className="w-100 form-group-label" >Username</div>
-                    <input type="text" class="form-control" id="inputUsername" value={username} onChange={(e)=>{setUsername(e.target.value)}} placeholder="Enter username"/>
+                    <input type="text" className="form-control" id="inputUsername" value={username} onChange={(e)=>{setUsername(e.target.value)}} placeholder="Enter username"/>
                     {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
                 </div>
                 <div className="form-group align-items-start w-100">
                     <div className="w-100 form-group-label" >Password</div>
-                    <input type="password" class="form-control" id="employeePassword" value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder="Enter password"/>
+                    <input type="password" className="form-control" id="employeePassword" value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder="Enter password"/>
                     {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
                 </div>
                 <button className='btn btn-primary margin-top' type="submit">Login</button>

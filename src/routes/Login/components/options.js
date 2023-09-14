@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { modes } from '../constants'
+import axios from 'axios'
 
 const Options = (props) =>{
     const {setMode} = props
+    
     return (
         <div className="d-flex flex-column w-100">
             <div className='d-flex'>

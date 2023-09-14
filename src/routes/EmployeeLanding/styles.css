@@ -1,0 +1,13 @@
+td{
+    padding:10px
+}
+th{
+    padding:10px
+}
+
+.grandwrapper{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
