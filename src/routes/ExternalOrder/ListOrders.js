@@ -47,9 +47,6 @@ const ExternalOrdersList = () =>{
                 <thead>
                     <tr>
                         <th>
-                            External Order ID
-                        </th>
-                        <th>
                             Buyer Name
                         </th>
                         <th>
@@ -86,7 +83,6 @@ const ExternalOrdersList = () =>{
                 <tbody>
                     {
                         externalOrders?.map((item, index)=><tr key={index}>
-                            <td>{`${item.extOrderid}`}</td>
                             <td>{`${item.buyerName}`}</td>
                             <td>{`${item.overseenBy}`}</td>
                             <td>{`${item.productBought}`}</td>

@@ -50,9 +50,6 @@ const ContractorLanding = () =>{
                 <thead>
                     <tr>
                         <th>
-                            Internal Order ID
-                        </th>
-                        <th>
                             Supplied by Contractor
                         </th>
                         <th>
@@ -93,7 +90,6 @@ const ContractorLanding = () =>{
                 <tbody>
                     {
                         internalOrders?.map((item, index)=><tr key={index}>
-                            <td>{`${item.intOrderid}`}</td>
                             <td>{`${item.suppliedBy}`}</td>
                             <td>{`${item.productBought}`}</td>
                             <td>{`${item.unitsBought}`}</td>

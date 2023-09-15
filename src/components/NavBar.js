@@ -39,12 +39,12 @@ const NavBar = () =>{
                         <div className="navbar-nav align-self-stretch align-items-stretch">
                             {
                                 !!Cookies.get("pump_auth")?
-                                <button className='nav-item btn btn-info' onClick={()=>{navigate("/employee/internal-list")}}>Internal Order List</button>
+                                <button style={{marginRight:"5px"}} className='nav-item btn btn-light' onClick={()=>{navigate("/employee/internal-list")}}>Internal Order List</button>
                                 :<></>
                             }
                             {
                                 !!Cookies.get("pump_auth")?
-                                <button className='nav-item btn btn-info' onClick={()=>{navigate("/employee/external-list")}}>External Order List</button>
+                                <button style={{marginRight:"5px"}} className='nav-item btn btn-light' onClick={()=>{navigate("/employee/external-list")}}>External Order List</button>
                                 :<></>
                             }
                             {
