@@ -8,25 +8,98 @@ import { global_constants } from "../../constants";
 const ExternalOrder = () =>{
     const getEmployeeID = () =>{
         try{
-            return JSON.parse(Cookies.get("pump_auth")).userid
+            const employeeId = JSON.parse(Cookies.get("pump_auth")).userid
+            if(!!employeeId){
+                return employeeId
+            }
+            else{
+                return 0
+            }
         }
         catch(err){
-            return 1 // 1 is dummy user_id
+            return 0 // 1 is dummy user_id
         }
     }
 
+    
+
     const {product_id} = useParams()
     const [product, setProduct] = useState()
+    
+    
+    
     const [externalOrder, setExternalOrder] = useState({
-        ext_orderId: (new Date()).getMilliseconds()+Math.floor(Math.random()*100),
+        ext_orderId: parseFloat(Number(new Date().getTime())+""+Math.floor(Math.random()*1000)),
         buyer_name: "",
         overseen_by: getEmployeeID(),
-        product_bought: product?.productId,
+        product_bought: Number(product_id),
         total_payable: 0,
         units_bought: 0,
         buyer_phone: "",
         date_ordered: (new Date()).toISOString().split("T")[0]
+
+        // "ext_orderId": 755370175, //parseFloat(Number(new Date().getTime())+""+Math.floor(Math.random()*1000)),    
+        // "buyer_name": "Spinosaurus Aegypticus",    
+        // "overseen_by": 0,    
+        // "product_bought": 1,    
+        // "total_payable": 20,    
+        // "units_bought": 70,    
+        // "buyer_phone": "9000000000",    
+        // "date_ordered": "2023-09-15"  
     })
+
+    // useEffect(()=>{console.log(externalOrder)},[externalOrder])
+
+    const onSubmit = useCallback(() =>{
+        
+        const toSubmit = {
+            "extOrderid": externalOrder.ext_orderId,
+            "buyerName": externalOrder.buyer_name,
+            "overseenBy": externalOrder.overseen_by,
+            "productBought": externalOrder.product_bought,
+            "totalPayable": getTotalPayable(),
+            "unitsBought": Number(externalOrder.units_bought),
+            "buyerPhone": externalOrder.buyer_phone,
+            "dateOrdered": new Date(externalOrder.date_ordered).toISOString().split("T")[0],
+        }
+
+        
+
+        // const toSubmit ={    
+        //     "extOrderid": 7553701755,    
+        //     "buyerName": "Hello",    
+        //     "overseenBy": 0,    
+        //     "productBought": 1,    
+        //     "totalPayable": 20,    
+        //     "unitsBought": 76,    
+        //     "buyerPhone": "9000000000",    
+        //     "dateOrdered": "2023-09-15"    
+        // }
+
+        if(Number(toSubmit.totalPayable)<=0 || toSubmit.buyerPhone.length!=10){
+            console.log( toSubmit)
+        }
+        else{
+            console.log("Submitting", toSubmit)
+            // alert(toSubmit)
+            axios({
+                method:"post",
+                data:toSubmit,
+                url: `${global_constants.url}/api/ExternalOrders`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    "ngrok-skip-browser-warning":"any",
+                    'Access-Control-Allow-Origin' : '*'
+                }
+            }).then(result=>{
+                console.log("success:", result.data)
+            }).catch(err=>{
+                // alert(err.message)
+                navigate("/employee/external-list")
+
+            })
+        }
+    },[externalOrder])
 
     const getTotalPayable = useCallback(() => {
         try{
@@ -54,6 +127,7 @@ const ExternalOrder = () =>{
             'Access-Control-Allow-Origin' : '*'
             }
         }).then((data)=>{
+            // console.log(data.data)
             setProduct(data.data)
         }).catch((err)=>{
             console.log(err.message)
@@ -162,22 +236,7 @@ const ExternalOrder = () =>{
                             placeholder="Enter units for purchase"
                         />
                     </div>
-                    <div className="form-group align-items-start justify-content-start">
-                        <p className="w-100">Units for purchase</p>
-                        <input 
-                            type="number" 
-                            className="w-100"
-                            value={externalOrder?.units_bought} 
-                            onChange={
-                                (e)=>{
-                                    setExternalOrder({
-                                        ...externalOrder,
-                                        units_bought:e.target.value
-                                    })}} 
-                            placeholder="Enter units for purchase"
-                        />
-                    </div>
-                    <button type="button" className="margin-vertical btn btn-primary">Place order</button>
+                    <button type="button" onClick={onSubmit} className="margin-vertical btn btn-primary">Place order</button>
                 </form>
             </div>
         </div>
@@ -185,3 +244,10 @@ const ExternalOrder = () =>{
 }
 
 export default ExternalOrder
+
+
+
+
+
+
+

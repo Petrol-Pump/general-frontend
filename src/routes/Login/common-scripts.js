@@ -4,7 +4,7 @@ export const authenticateUser = async (username, password, role) => {
     
     // this promise simulates an async function for the real credential verification
     const result = await new Promise((resolve, reject)=>{
-        if (username === "FartMonster45" && password === "xyz") {
+        if (username === "admin" && password === "xyz") {
             const userData = {
                 username,
                 role

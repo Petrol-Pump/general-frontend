@@ -5,6 +5,8 @@ import EmployeeLanding from './routes/EmployeeLanding';
 import RouteOutlet from './routes/RouteOutlet';
 import ContractorLanding from './routes/ContractorLanding';
 import ExternalOrder from './routes/ExternalOrder';
+import ExternalOrdersList from './routes/ExternalOrder/ListOrders';
+import InternalList from './routes/EmployeeLanding/InternalList';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
             <Route path="*" element={<Login/>}/>
             <Route exact path="/employee" element={<EmployeeLanding/>}/>
             <Route exact path="/contractor" element={<ContractorLanding/>} />
+            <Route exact path="/employee/external-list" element={<ExternalOrdersList/>} />
+            <Route exact path="/employee/internal-list" element={<InternalList/>} />
             <Route exact path="/employee/external/:product_id" element={<ExternalOrder/>} />
           </Route>
         </Routes>
